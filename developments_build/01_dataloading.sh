@@ -9,6 +9,8 @@
 ## Load all datasets from sources using data-loading-scripts
 ## https://github.com/NYCPlanning/data-loading-scripts
 
+cd '/prod/data-loading-scripts'
+
 ## Open_datasets - PULLING FROM OPEN DATA
 echo 'Loading open source datasets...'
 node loader.js install dob_jobapplications
