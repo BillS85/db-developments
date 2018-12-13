@@ -30,6 +30,11 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/units_.sql
 
 
 echo 'Adding on CO data attributes'
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/cotable.sql 
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/co_.sql
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/unitsnet.sql
+
+
 
 
 echo 'Populating DCP data flags'
