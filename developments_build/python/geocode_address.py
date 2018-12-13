@@ -86,7 +86,7 @@ def get_loc(num, street, borough):
         lon = 'none'
     loc = pd.DataFrame({'bbl' : [bbl],
                         'bin' : [b_in],
-                        'hnum': [hnum].
+                        'hnum': [hnum],
                         'sname': [sname],
                         'bcode': [bcode],
                         'cd'   : [cd],
