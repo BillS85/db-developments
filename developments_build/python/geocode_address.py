@@ -24,7 +24,7 @@ app_key = config['GEOCLIENT_APP_KEY']
 engine = sql.create_engine('postgresql://{}@localhost:5432/{}'.format(DBUSER, DBNAME))
 
 # read in housing table
-developments = pd.read_sql_query('SELECT job_number, address_house, address_street, boro FROM developments WHERE address_house IS NOT NULL AND address_street IS NOT NULL AND address IS NOT NULL AND boro IS NOT NULL AND geom IS NULL;', engine)
+developments = pd.read_sql_query('SELECT job_number, address_house, address_street, boro FROM developments WHERE address_house IS NOT NULL AND address_street IS NOT NULL AND address IS NOT NULL AND boro IS NOT NULL AND geo_bbl IS NULL LIMIT 1000;', engine)
 
 # replace single quotes with doubled single quotes for psql compatibility 
 developments['address_house'] = [i.replace("'", "''") for i in developments['address_house']]
