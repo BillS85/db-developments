@@ -34,6 +34,8 @@ CREATE TABLE developments (
 	bin text,
 	bbl text,
 	boro text,
+	geo_address_house text,
+	geo_address_street text,
 	geo_address text,
 	geo_bin text,
 	geo_bbl text,
