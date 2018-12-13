@@ -22,6 +22,7 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/occ_.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/status.sql
 
 echo 'Adding on DCP researched attributes'
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/dcpattributes.sql
 
 echo 'Calculating data attributes'
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/statusq.sql
@@ -32,3 +33,13 @@ echo 'Adding on CO data attributes'
 
 
 echo 'Populating DCP data flags'
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_inactive.sql
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_mixeduse.sql
+
+echo 'Geocoding geoms...'
+source activate py2
+python $REPOLOC/developments_build/python/geocode_address.py
+source deactivate
+
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geombbl.sql
+

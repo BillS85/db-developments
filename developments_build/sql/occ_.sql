@@ -50,11 +50,11 @@ WHERE a.occ_prop = b.doboccupancycode1968;
 -- mark records as Empty Lots
 UPDATE developments
 SET occ_init = 'Empty Lot'
-WHERE dob_type = 'NB' AND occ_init IS NULL;
+WHERE job_type = 'NB' AND occ_init IS NULL;
 
 UPDATE developments
 SET occ_prop = 'Empty Lot'
-WHERE dob_type = 'DM' AND occ_prop IS NULL;
+WHERE job_type = 'DM' AND occ_prop IS NULL;
 
 
 -- category
@@ -68,3 +68,15 @@ OR occ_init LIKE '%Assisted%Living%' OR occ_prop LIKE '%Assisted%Living%';
 UPDATE developments
 SET occ_category = 'Other'
 WHERE dcp_occ_category IS NULL;
+
+-- Set occ_init = 'Garage/Miscellaneous' AND occ_prop = 'Garage/Miscellaneous'
+-- Where job_type is Demolition or Alteration
+-- AND address contains REAR or where job_description contains GARAGE 
+UPDATE developments
+SET occ_init = 'Garage/Miscellaneous',
+	occ_prop = 'Garage/Miscellaneous'
+WHERE (job_type = 'Demolition' 
+	AND (upper(job_description) LIKE '%GARAGE%' OR upper(address) LIKE '%REAR%'))
+OR (job_type = 'Alteration'
+	AND (upper(job_description) LIKE '%GARAGE%' OR upper(address) LIKE '%REAR%') 
+	AND (units_net::numeric = 0 OR units_net::numeric IS NULL));

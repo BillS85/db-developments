@@ -11,3 +11,11 @@ SET status =
 		WHEN job_type = 'Demolition' AND status IN ('Complete','Permit issued') THEN 'Complete (demolition)'
 		ELSE status
 	END);
+
+-- set the status to withdrawn based on the x_withdrawal attribute value
+UPDATE developments
+SET status = 'Withdrawn'
+WHERE x_withdrawal = 'W' OR x_withdrawal = 'C';
+
+ALTER TABLE developments
+DROP COLUMN x_withdrawal;
