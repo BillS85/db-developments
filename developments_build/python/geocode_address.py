@@ -110,7 +110,7 @@ locs.reset_index(inplace = True)
 # update developments spatial information from geosupport results
 for i in range(len(developments)):
     if (locs['bbl'][i] != 'none'):
-        upd = "UPDATE developments a SET geo_bbl = locs['bbl'][i], geo_bin = locs['bin'][i], geo_address = locs['hnum'][i]||' '||locs['sname'][i], geo_boro = locs['bcode'][i], geo_cd = locs['cd'][i], geo_ntacode2010 = locs['nta'][i], geo_ntaname2010 = locs['ntan'][i], geo_censusblock2010 = locs['cblock'][i], geo_csd = locs['csd'][i], latitude = locs['lat'][i], longitude = locs['lon'][i] WHERE a.job_number = '" + developments['job_number'][i] + "';"
+        upd = "UPDATE developments a SET geo_bbl = " + str(locs['bbl'][i]) + ", geo_bin = locs['bin'][i], geo_address = locs['hnum'][i]||' '||locs['sname'][i], geo_boro = locs['bcode'][i], geo_cd = locs['cd'][i], geo_ntacode2010 = locs['nta'][i], geo_ntaname2010 = locs['ntan'][i], geo_censusblock2010 = locs['cblock'][i], geo_csd = locs['csd'][i], latitude = locs['lat'][i], longitude = locs['lon'][i] WHERE a.job_number = '" + developments['job_number'][i] + "';"
     elif locs['bbl'][i] == 'none': 
         upd = "UPDATE developments a SET geom = NULL WHERE a.job_number = '" + developments['job_number'][i] + "';"
     engine.execute(upd)
