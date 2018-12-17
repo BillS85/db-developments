@@ -53,27 +53,20 @@ WHERE b.units_prop ~ '[0-9]'
 	AND b.units_prop_res IS NULL;
 
 UPDATE developments a
-SET units_net_complete = TRIM(b.u_net_comp),
-	x_dcpedited = TRUE
-FROM housing_input_dcpattributes b
-WHERE b.u_net_comp ~ '[0-9]'
-	AND a.job_number=b.job_number;
-
-UPDATE developments a
-SET units_net_incomplete = TRIM(b.u_net_inc),
+SET units_incomplete = TRIM(b.u_net_inc),
 	x_dcpedited = TRUE
 FROM housing_input_dcpattributes b
 WHERE b.u_net_inc ~ '[0-9]'
 	AND a.job_number=b.job_number;
 
 UPDATE developments a
-SET latest_cofo = TRIM(b.c_u_latest),
+SET co_latest_units = TRIM(b.c_u_latest),
 	x_dcpedited = TRUE
 FROM housing_input_dcpattributes b
 WHERE b.c_u_latest ~ '[0-9]'
 	AND a.job_number=b.job_number;
 
-UPDATE housing a
+UPDATE developments a
 SET x_inactive = TRIM(b.x_inactive),
 	x_dcpedited = TRUE
 FROM housing_input_dcpattributes b

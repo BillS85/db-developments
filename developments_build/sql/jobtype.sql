@@ -5,7 +5,7 @@ SELECT DISTINCT job_type,
 		WHEN job_type = 'A1' THEN 'Alteration'
 		WHEN job_type = 'DM' THEN 'Demolition'
 		WHEN job_type = 'NB' THEN 'New Building'
-		ELSE NULL
+		ELSE job_type
 	END ) AS type
 FROM developments
 )
