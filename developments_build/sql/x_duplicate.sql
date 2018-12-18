@@ -16,8 +16,8 @@ UPDATE developments
 			);
 
 ALTER TABLE developments
-ADD COLUMN x_dup_maxstatusdate,
-ADD COLUMN x_dup_maxcofodate;
+ADD COLUMN x_dup_maxstatusdate text,
+ADD COLUMN x_dup_maxcofodate text;
 
 -- calculate the max status date for each unique dup id
 UPDATE developments a
@@ -52,7 +52,7 @@ UPDATE developments
 		AND co_latest_effectivedate IS NULL
 		AND status <> 'Complete';
 -- flag possible duplicates based on records having a max c of o date > the status date
-UPDATE housing
+UPDATE developments
 	SET
 		x_dup_flag = 'Possible duplicate'
 	WHERE

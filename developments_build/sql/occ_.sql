@@ -67,7 +67,7 @@ OR occ_init LIKE '%Assisted%Living%' OR occ_prop LIKE '%Assisted%Living%';
 -- otherwise set to other
 UPDATE developments
 SET occ_category = 'Other'
-WHERE dcp_occ_category IS NULL;
+WHERE occ_category IS NULL;
 
 -- Set occ_init = 'Garage/Miscellaneous' AND occ_prop = 'Garage/Miscellaneous'
 -- Where job_type is Demolition or Alteration

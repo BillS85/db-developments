@@ -22,7 +22,7 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/jobtype.sql
 ## pull out records with a specific occupancy code for manual research
 ## occupancy codes: A-3 (ASSEMBLY: OTHER), H-2 (HIGH HAZARD: ACCELERATED BURNING)
 echo 'Outputting records for research'
-psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * FROM developments WHERE occ_init = 'A-3' OR occ_prop = 'A-3' OR occ_init = 'H-2' OR occ_prop = 'H-2') TO '$REPOLOC/db-developments/developments_build/output/qc_occupancyresearch.csv' DELIMITER ',' CSV HEADER;"
+psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * FROM developments WHERE occ_init = 'A-3' OR occ_prop = 'A-3' OR occ_init = 'H-2' OR occ_prop = 'H-2') TO '$REPOLOC/developments_build/output/qc_occupancyresearch.csv' DELIMITER ',' CSV HEADER;"
 
 
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/occ_.sql
@@ -42,8 +42,8 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/unitscomplete.sql
 
 echo 'Outputting records for research'
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/qc_outlier.sql
-psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * qc_outliers WHERE job_number NOT IN (SELECT DISTINCT job_number FROM qc_outliersacrhived WHERE outlier = 'N' OR outlier = 'C')) TO '$REPOLOC/db-developments/developments_build/output/qc_outliers.csv' DELIMITER ',' CSV HEADER;"
-psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * qc_outliersacrhived qc_outliers.csv' DELIMITER ',' CSV HEADER;"
+psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * FROM qc_outliers WHERE job_number NOT IN (SELECT DISTINCT job_number FROM qc_outliersacrhived WHERE outlier = 'N' OR outlier = 'C')) TO '$REPOLOC/db-developments/developments_build/output/qc_outliers.csv' DELIMITER ',' CSV HEADER;"
+psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * FROM qc_outliersacrhived) TO '$REPOLOC/db-developments/developments_build/output/qc_outliersacrhived.csv' DELIMITER ',' CSV HEADER;"
 
 
 echo 'Populating DCP data flags'

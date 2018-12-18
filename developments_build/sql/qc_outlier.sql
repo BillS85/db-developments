@@ -5,7 +5,7 @@ CREATE TABLE qc_outliers
 	outlier text
 );
 
-COPY qc_outliers FROM '/prod/db-housing/housing_build/output/qc_outliers.csv' DELIMITER ',' CSV HEADER;
+COPY qc_outliers FROM '/prod/db-developments/developments_build/output/qc_outliers.csv' DELIMITER ',' CSV HEADER;
 
 -- add outlier records to archived table
 CREATE TABLE IF NOT EXISTS qc_outliersacrhived (
