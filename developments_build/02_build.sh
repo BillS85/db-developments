@@ -5,8 +5,8 @@ REPOLOC="$(git rev-parse --show-toplevel)"
 cd $REPOLOC
 
 # load config
-DBNAME=$(cat $REPOLOC/housing.config.json | jq -r '.DBNAME')
-DBUSER=$(cat $REPOLOC/housing.config.json | jq -r '.DBUSER')
+DBNAME=$(cat $REPOLOC/developments.config.json | jq -r '.DBNAME')
+DBUSER=$(cat $REPOLOC/developments.config.json | jq -r '.DBUSER')
 
 start=$(date +'%T')
 echo "Starting to build Developments DB"
@@ -60,6 +60,3 @@ source deactivate
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geombbl.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geomdcp.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/latlong.sql
-
-
-
