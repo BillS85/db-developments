@@ -15,6 +15,7 @@ CREATE TABLE developments (
 	units_init text,
 	units_prop text,
 	units_net text,
+	units_complete text,
 	units_incomplete text,
 	co_earliest_effectivedate text,
 	co_latest_effectivedate text,
