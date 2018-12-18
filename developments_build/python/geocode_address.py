@@ -110,7 +110,7 @@ locs.reset_index(inplace = True)
 # update developments spatial information from geosupport results
 for i in range(len(developments)):
     if (locs['bbl'][i] != 'none'):
-        upd = "UPDATE developments a SET geo_bbl = '" + str(locs['bbl'][i]) + "', geo_bin = '" + str(locs['bin'][i]) + "', geo_address_house = '" + str(locs['hnum'][i]) + "', geo_address_street = '" + str(locs["sname"][i]) + "', geo_boro = '" + str(locs['bcode'][i]) + "', geo_cd = '" + str(locs['cd'][i]) + "', geo_ntacode2010 = '" + str(locs['nta'][i]) + "', geo_ntaname2010 = '" + str(locs["ntan"][i]) + "', geo_censusblock2010 = '" + str(locs['cblock'][i]) + "', geo_csd = '" + str(locs['csd'][i]) + "', latitude = '" + str(locs['lat'][i]) + "', longitude = '" + str(locs['lon'][i]) + "' WHERE a.job_number = '" + developments['job_number'][i] + "';"
+        upd = "UPDATE developments a SET geo_bbl = '" + str(locs['bbl'][i]) + "', geo_bin = '" + str(locs['bin'][i]) + "', geo_address_house = '" + str(locs['hnum'][i]) + "', geo_address_street = '" + str(locs["sname"][i]) + "', geo_boro = '" + str(locs['bcode'][i]) + "', geo_cd = '" + str(locs['cd'][i]) + "', geo_ntacode2010 = '" + str(locs['nta'][i]) + "', geo_censusblock2010 = '" + str(locs['cblock'][i]) + "', geo_csd = '" + str(locs['csd'][i]) + "', latitude = '" + str(locs['lat'][i]) + "', longitude = '" + str(locs['lon'][i]) + "' WHERE a.job_number = '" + developments['job_number'][i] + "';"
     elif locs['bbl'][i] == 'none': 
         upd = "UPDATE developments a SET geom = NULL WHERE a.job_number = '" + developments['job_number'][i] + "';"
     engine.execute(upd)

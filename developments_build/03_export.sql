@@ -5,8 +5,8 @@ REPOLOC="$(git rev-parse --show-toplevel)"
 cd $REPOLOC
 
 # load config
-DBNAME=$(cat $REPOLOC/housing.config.json | jq -r '.DBNAME')
-DBUSER=$(cat $REPOLOC/housing.config.json | jq -r '.DBUSER')
+DBNAME=$(cat $REPOLOC/developments.config.json | jq -r '.DBNAME')
+DBUSER=$(cat $REPOLOC/developments.config.json | jq -r '.DBUSER')
 
 # eventually these should copy directly from psql to carto
 # for now, write to files which can by copied
