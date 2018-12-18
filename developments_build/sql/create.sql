@@ -43,7 +43,6 @@ CREATE TABLE developments (
 	geo_boro text,
 	geo_cd text,
 	geo_ntacode2010 text,
-	geo_ntaname2010 text,
 	geo_censusblock2010 text,
 	geo_csd text,
 	x_dcpedited text,
