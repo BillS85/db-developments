@@ -50,8 +50,8 @@ SELECT
 	housenumber,
 	streetname,
 	bin,
-	borough,
 	lpad(block, 5, '0')||lpad(lot, 4, '0'),
+	borough,
 	specialactionstatus,
 	latitude,
 	longitude	
