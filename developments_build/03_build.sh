@@ -5,8 +5,8 @@ REPOLOC="$(git rev-parse --show-toplevel)"
 cd $REPOLOC
 
 # load config
-DBNAME=$(cat $REPOLOC/housing.config.json | jq -r '.DBNAME')
-DBUSER=$(cat $REPOLOC/housing.config.json | jq -r '.DBUSER')
+DBNAME=$(cat $REPOLOC/developments.config.json | jq -r '.DBNAME')
+DBUSER=$(cat $REPOLOC/developments.config.json | jq -r '.DBUSER')
 
 start=$(date +'%T')
 echo "Starting to build Developments DB"
