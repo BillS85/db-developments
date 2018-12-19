@@ -33,7 +33,7 @@ CREATE TABLE housing_export AS
 --all records
 \copy (SELECT * FROM dev_export) TO '/prod/db-developments/developments_build/output/devdb_developments.csv' DELIMITER ',' CSV HEADER;
 -- only points
-\copy (SELECT * FROM dev_export WHERE ST_GeometryType(geom)='ST_Point') TO '/prod/db-developments/developments_build/output/devdb_developments_pts' DELIMITER ',' CSV HEADER;
+\copy (SELECT * FROM dev_export WHERE ST_GeometryType(geom)='ST_Point') TO '/prod/db-developments/developments_build/output/devdb_developments_pts.csv' DELIMITER ',' CSV HEADER;
 -- records that did not geocode
 \copy (SELECT * FROM dev_export WHERE geom IS NULL AND latitude IS NULL AND upper(address) NOT LIKE '% TEST %') TO '/prod/db-developments/developments_build/output/devdb_developments_nogeom' DELIMITER ',' CSV HEADER;
 -- only housing records
@@ -42,6 +42,8 @@ CREATE TABLE housing_export AS
 \copy (SELECT * FROM housing_export WHERE ST_GeometryType(geom)='ST_Point') TO '/prod/db-developments/developments_build/output/devdb_housing_pts.csv' DELIMITER ',' CSV HEADER;
 -- ony housing records that did not geocode
 \copy (SELECT * FROM housing_export WHERE geom IS NULL AND latitude IS NULL AND upper(address) NOT LIKE '% TEST %') TO '/prod/db-developments/developments_build/output/devdb_housing_nogeom.csv' DELIMITER ',' CSV HEADER;
+
+\copy (SELECT * FROM developments_co) TO '/prod/db-developments/developments_build/output/devdb_cos.csv' DELIMITER ',' CSV HEADER;
 
 DROP TABLE dev_export;
 DROP TABLE housing_export;

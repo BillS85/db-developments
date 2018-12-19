@@ -11,3 +11,7 @@ WHERE occ_prop LIKE '.%';
 UPDATE developments a
 SET units_prop = NULL 
 WHERE a.units_prop ~ '[^0-9]';
+-- make boro proper case
+UPDATE developments a
+SET boro = INITCAP(boro) 
+WHERE boro IS NOT NULL;
