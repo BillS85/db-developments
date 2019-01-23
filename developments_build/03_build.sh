@@ -52,6 +52,9 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_mixeduse.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_duplicate.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_outlier.sql
 
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/units_hotels.sql
+
+
 echo 'Geocoding geoms...'
 source activate py2
 python $REPOLOC/developments_build/python/geocode_address.py
