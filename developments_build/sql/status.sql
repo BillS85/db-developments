@@ -19,3 +19,8 @@ WHERE x_withdrawal = 'W' OR x_withdrawal = 'C';
 
 ALTER TABLE developments
 DROP COLUMN x_withdrawal;
+
+-- set the status to Complete where a TCO or FCO has been issued
+UPDATE developments a
+SET status = 'Complete'
+WHERE co_earliest_effectivedate IS NOT NULL;
