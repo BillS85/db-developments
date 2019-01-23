@@ -23,12 +23,13 @@ CREATE TABLE housing_export AS
 	OR (co_earliest_effectivedate IS NULL AND status_q::date >= '2010-01-01' AND status_q::date <=  '2018-06-30')
 	OR (co_earliest_effectivedate IS NULL AND status_q IS NULL AND status_a::date >= '2010-01-01' AND status_a::date <=  '2018-06-30'))
 	AND (occ_category = 'Residential' OR occ_prop LIKE '%Residential%' OR occ_init LIKE '%Residential%' OR occ_prop LIKE '%Assisted%Living%' OR occ_init LIKE '%Assisted%Living%')
-	AND (occ_init <> 'Garage/Miscellaneous' AND occ_prop <> 'Garage/Miscellaneous')
+	AND (occ_init IS DISTINCT FROM 'Garage/Miscellaneous' OR occ_prop IS DISTINCT FROM 'Garage/Miscellaneous')
 	AND job_number NOT IN (
 		SELECT DISTINCT job_number 
 		FROM developments
 		WHERE job_type = 'New Building' AND occ_prop = 'Hotel or Dormitory' AND x_mixeduse IS NULL)
 	);
+
 -- export
 --all records
 \copy (SELECT * FROM dev_export) TO '/prod/db-developments/developments_build/output/devdb_developments.csv' DELIMITER ',' CSV HEADER;
