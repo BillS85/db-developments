@@ -14,6 +14,14 @@ WHERE a.job_number = b.job_number
 AND a.geom IS NULL
 AND b.geom IS NOT NULL;
 
+-- use lat and long
+UPDATE developments a
+SET geom = ST_SetSRID(ST_MakePoint(b.longitude::double precision, b.latitude::double precision),4326)
+FROM housing_input_dcpattributes b
+WHERE a.job_number = b.job_number
+AND a.geom IS NULL
+AND b.longitude IS NOT NULL AND b.latitude::double precision > 0;
+
 -- use created geometry
 UPDATE developments a
 SET geom = b.geom
@@ -21,14 +29,6 @@ FROM housing_input_dcpattributes b
 WHERE a.job_number = b.job_number
 AND a.geom IS NULL
 AND b.geom IS NOT NULL;
-
--- use lat and long
-UPDATE developments a
-SET geom = ST_SetSRID(ST_MakePoint(b.longitude::double precision, b.latitude::double precision),4326)
-FROM housing_input_dcpattributes b
-WHERE a.job_number = b.job_number
-AND a.geom IS NULL
-AND b.longitude IS NOT NULL;
 
 -- use bin centroid
 UPDATE developments a
