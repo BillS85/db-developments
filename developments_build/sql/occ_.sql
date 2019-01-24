@@ -50,11 +50,11 @@ WHERE a.occ_prop = b.doboccupancycode1968;
 -- mark records as Empty Lots
 UPDATE developments
 SET occ_init = 'Empty Lot'
-WHERE job_type = 'NB' AND occ_init IS NULL;
+WHERE job_type = 'New Building' AND occ_init IS NULL;
 
 UPDATE developments
 SET occ_prop = 'Empty Lot'
-WHERE job_type = 'DM' AND occ_prop IS NULL;
+WHERE job_type = 'Demolition' AND occ_prop IS NULL;
 
 
 -- category

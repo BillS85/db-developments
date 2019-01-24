@@ -7,9 +7,7 @@ UPDATE developments
 		END)
 	WHERE
 		status <> 'Complete'
-		AND status <> 'Complete (demolition)'
-		AND status <> 'SIGNED OFF'
-		AND status <> 'SIGNED-OFF';
+		AND status <> 'Complete (demolition)';
 
 UPDATE developments
 	SET x_inactive = FALSE

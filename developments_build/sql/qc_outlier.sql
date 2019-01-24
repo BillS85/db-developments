@@ -51,7 +51,6 @@ WHERE
 	job_type = 'Alteration'
 	AND units_net IS NOT NULL
 	AND (status <> 'Withdrawn' OR status IS NULL)
-	AND x_dup_flag IS NULL
 ORDER BY
 	units_net DESC
 LIMIT 20)
@@ -64,7 +63,6 @@ WHERE
 	job_type = 'Alteration'
 	AND units_prop IS NOT NULL
 	AND (status <> 'Withdrawn' OR status IS NULL)
-	AND x_dup_flag IS NULL
 ORDER BY
 	units_prop DESC
 LIMIT 10)

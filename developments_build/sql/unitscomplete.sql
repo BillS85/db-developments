@@ -4,8 +4,8 @@ SET units_complete =
 		(CASE
 			WHEN status = 'Complete (demolition)' AND units_net IS NOT NULL THEN units_net
 			WHEN co_latest_units IS NULL AND units_net IS NOT NULL THEN '0' 
-			WHEN job_type = 'A1' AND co_latest_units IS NOT NULL AND units_net IS NOT NULL THEN (co_latest_units::numeric - units_init::numeric)::text
-			WHEN job_type = 'NB' AND co_latest_units IS NOT NULL AND units_net IS NOT NULL THEN co_latest_units
+			WHEN job_type = 'Alteration' AND co_latest_units IS NOT NULL AND units_net IS NOT NULL THEN (co_latest_units::numeric - units_init::numeric)::text
+			WHEN job_type = 'New Building' AND co_latest_units IS NOT NULL AND units_net IS NOT NULL THEN co_latest_units
 		END),
 	units_incomplete =
 		(CASE 

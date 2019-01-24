@@ -22,11 +22,10 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/jobtype.sql
 ## pull out records with a specific occupancy code for manual research
 ## occupancy codes: A-3 (ASSEMBLY: OTHER), H-2 (HIGH HAZARD: ACCELERATED BURNING)
 echo 'Outputting records for research'
-psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * FROM developments WHERE occ_init = 'A-3' OR occ_prop = 'A-3' OR occ_init = 'H-2' OR occ_prop = 'H-2') TO '$REPOLOC/developments_build/output/qc_occupancyresearch.csv' DELIMITER ',' CSV HEADER;"
-
+## move to QA/QC scripts 
+## psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * FROM developments WHERE occ_init = 'A-3' OR occ_prop = 'A-3' OR occ_init = 'H-2' OR occ_prop = 'H-2') TO '$REPOLOC/developments_build/output/qc_occupancyresearch.csv' DELIMITER ',' CSV HEADER;"
 
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/occ_.sql
-psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/status.sql
 
 echo 'Adding on DCP researched attributes'
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/dcpattributes.sql
@@ -38,7 +37,9 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/units_.sql
 echo 'Adding on CO data attributes'
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/cotable.sql 
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/co_.sql
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/status.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/unitscomplete.sql
+
 
 echo 'Outputting records for research'
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/qc_outlier.sql
@@ -49,10 +50,10 @@ psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * FROM qc_outliersacrhived) TO '$REP
 echo 'Populating DCP data flags'
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_inactive.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_mixeduse.sql
-psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_duplicate.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_outlier.sql
 
-psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/units_hotels.sql
+## not implementing until issue number 8 is addressed
+## psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/units_hotels.sql
 
 
 echo 'Geocoding geoms...'

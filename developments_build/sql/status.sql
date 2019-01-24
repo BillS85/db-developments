@@ -20,6 +20,18 @@ WHERE x_withdrawal = 'W' OR x_withdrawal = 'C';
 ALTER TABLE developments
 DROP COLUMN x_withdrawal;
 
+-- set the status to In Progress if there is a date in status P
+UPDATE developments
+SET status = 'In progress'
+WHERE status_p IS NOT NULL
+	AND status NOT LIKE '%Complete%';
+
+-- set the status to Permit Issued if there is a date in status Q
+UPDATE developments
+SET status = 'Permit issued'
+WHERE status_q IS NOT NULL
+	AND status NOT LIKE '%Complete%';
+
 -- set the status to Complete where a TCO or FCO has been issued
 UPDATE developments a
 SET status = 'Complete'

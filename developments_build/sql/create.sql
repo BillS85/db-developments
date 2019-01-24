@@ -47,11 +47,10 @@ CREATE TABLE developments (
 	geo_csd text,
 	x_dcpedited text,
  	x_mixeduse text,
-	x_dup_flag text,
-	x_dup_id text,
 	x_inactive text,
 	x_outlier text,
 	x_withdrawal text,
+	x_geomsource text,
 	latitude text,
 	longitude text	
 );

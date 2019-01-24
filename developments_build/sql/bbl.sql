@@ -3,11 +3,11 @@
 WITH borolookup AS (
 SELECT DISTINCT boro,
 	(CASE 
-		WHEN boro = 'MANHATTAN' THEN '1'
-		WHEN boro = 'BRONX' THEN '2'
-		WHEN boro = 'BROOKLYN' THEN '3'
-		WHEN boro = 'QUEENS' THEN '4'
-		WHEN boro = 'STATEN ISLAND' THEN '5'
+		WHEN upper(boro) = 'MANHATTAN' THEN '1'
+		WHEN upper(boro)= 'BRONX' THEN '2'
+		WHEN upper(boro) = 'BROOKLYN' THEN '3'
+		WHEN upper(boro) = 'QUEENS' THEN '4'
+		WHEN upper(boro) = 'STATEN ISLAND' THEN '5'
 		ELSE NULL
 	END ) borocode
 FROM developments
