@@ -14,6 +14,7 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/create.sql
 # populate job application data
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/jobnumber.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/clean.sql
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/removejobs.sql
 echo 'Transforming data attributes to DCP values'
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/bbl.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/address.sql
