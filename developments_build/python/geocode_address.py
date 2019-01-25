@@ -106,7 +106,6 @@ for i in range(len(developments)):
     )
     locs = pd.concat((locs, new))
 locs.reset_index(inplace = True)
-
 # update developments spatial information from geosupport results
 for i in range(len(developments)):
     if (locs['bbl'][i] != 'none'):

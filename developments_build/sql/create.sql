@@ -51,6 +51,7 @@ CREATE TABLE developments (
 	x_outlier text,
 	x_withdrawal text,
 	x_geomsource text,
+	x_reason text,
 	latitude text,
 	longitude text	
 );
