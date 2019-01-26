@@ -1,8 +1,8 @@
 stat,count
+number of alterations with +/- 100 units,31725
 number of inactive records,0
-sum of units_prop,740871
-number of alterations with +/- 100 units,29981
-sum of units_complete,153553
+sum of units_complete,168568
+sum of units_prop,783683
 number of mixused records,0
-sum of units_net,309416
+sum of units_net,328994
 number of outlier records,0
