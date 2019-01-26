@@ -67,18 +67,18 @@ FROM housing_input_dcpattributes b
 WHERE b.u_net_inc ~ '[0-9]'
 	AND a.job_number=b.job_number;
 
-UPDATE developments a
-SET co_latest_units = TRIM(b.c_u_latest),
-	x_dcpedited = TRUE,
-	x_reason = b.reason
-FROM housing_input_dcpattributes b
-WHERE b.c_u_latest ~ '[0-9]'
-	AND a.job_number=b.job_number;
+-- UPDATE developments a
+-- SET co_latest_units = TRIM(b.c_u_latest),
+-- 	x_dcpedited = TRUE,
+-- 	x_reason = b.reason
+-- FROM housing_input_dcpattributes b
+-- WHERE b.c_u_latest ~ '[0-9]'
+-- 	AND a.job_number=b.job_number;
 
-UPDATE developments a
-SET x_inactive = TRIM(b.x_inactive),
-	x_dcpedited = TRUE,
-	x_reason = b.reason
-FROM housing_input_dcpattributes b
-WHERE b.x_inactive IS NOT NULL
-	AND a.job_number=b.job_number;
+-- UPDATE developments a
+-- SET x_inactive = TRIM(b.x_inactive),
+-- 	x_dcpedited = TRUE,
+-- 	x_reason = b.reason
+-- FROM housing_input_dcpattributes b
+-- WHERE b.x_inactive IS NOT NULL
+-- 	AND a.job_number=b.job_number;

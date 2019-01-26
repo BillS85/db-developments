@@ -46,5 +46,5 @@ CREATE TABLE housing_export AS
 
 \copy (SELECT * FROM developments_co) TO '/prod/db-developments/developments_build/output/devdb_cos.csv' DELIMITER ',' CSV HEADER;
 
-DROP TABLE dev_export;
-DROP TABLE housing_export;
+-- DROP TABLE dev_export;
+-- DROP TABLE housing_export;

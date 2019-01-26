@@ -24,24 +24,23 @@ AND a.geom IS NULL
 AND b.longitude IS NOT NULL AND b.latitude::double precision > 0;
 
 -- use created geometry
-UPDATE developments a
-SET geom = b.geom,
-	x_geomsource = 'Geom DCP'
-FROM housing_input_dcpattributes b
-WHERE a.job_number = b.job_number
-AND a.geom IS NULL
-AND b.geom IS NOT NULL;
+-- UPDATE developments a
+-- SET geom = b.geom,
+-- 	x_geomsource = 'Geom DCP'
+-- FROM housing_input_dcpattributes b
+-- WHERE a.job_number = b.job_number
+-- AND a.geom IS NULL
+-- AND b.geom IS NOT NULL;
 
 -- use bin centroid
 UPDATE developments a
 SET geom = b.geom,
 	x_geomsource = 'BIN DCP'
-FROM (SELECT a.job_number, ST_Centroid(b.geom) as geom
-	FROM housing_input_dcpattributes a
-	LEFT JOIN doitt_buildingfootprints b
-	ON a.bin::text=b.bin::text
-	WHERE a.bin IS NOT NULL
-	AND a.geom IS NULL) b
+FROM (SELECT c.job_number, ST_Centroid(d.geom) as geom
+	FROM housing_input_dcpattributes c
+	LEFT JOIN doitt_buildingfootprints d
+	ON c.bin::text=d.bin::text
+	WHERE c.bin IS NOT NULL) b
 WHERE a.job_number = b.job_number
 AND a.geom IS NULL
 AND b.geom IS NOT NULL;
