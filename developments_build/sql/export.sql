@@ -10,18 +10,18 @@ DROP TABLE IF EXISTS dev_export;
 CREATE TABLE dev_export AS 
 	(SELECT *
 	FROM developments
-	WHERE (co_earliest_effectivedate::date >= '2010-01-01' AND co_earliest_effectivedate::date <=  '2018-06-30')
-	OR (co_earliest_effectivedate IS NULL AND status_q::date >= '2010-01-01' AND status_q::date <=  '2018-06-30')
-	OR (co_earliest_effectivedate IS NULL AND status_q IS NULL AND status_a::date >= '2010-01-01' AND status_a::date <=  '2018-06-30')
+	WHERE (co_earliest_effectivedate::date >= '2010-01-01' AND co_earliest_effectivedate::date <=  '2018-12-31')
+	OR (co_earliest_effectivedate IS NULL AND status_q::date >= '2010-01-01' AND status_q::date <=  '2018-12-31')
+	OR (co_earliest_effectivedate IS NULL AND status_q IS NULL AND status_a::date >= '2010-01-01' AND status_a::date <=  '2018-12-31')
 	);
 
 DROP TABLE IF EXISTS housing_export;
 CREATE TABLE housing_export AS 
 	(SELECT *
 	FROM developments
-	WHERE ((co_earliest_effectivedate::date >= '2010-01-01' AND co_earliest_effectivedate::date <=  '2018-06-30')
-	OR (co_earliest_effectivedate IS NULL AND status_q::date >= '2010-01-01' AND status_q::date <=  '2018-06-30')
-	OR (co_earliest_effectivedate IS NULL AND status_q IS NULL AND status_a::date >= '2010-01-01' AND status_a::date <=  '2018-06-30'))
+	WHERE ((co_earliest_effectivedate::date >= '2010-01-01' AND co_earliest_effectivedate::date <=  '2018-12-31')
+	OR (co_earliest_effectivedate IS NULL AND status_q::date >= '2010-01-01' AND status_q::date <=  '2018-12-31')
+	OR (co_earliest_effectivedate IS NULL AND status_q IS NULL AND status_a::date >= '2010-01-01' AND status_a::date <=  '2018-12-31'))
 	AND (occ_category = 'Residential' OR occ_prop LIKE '%Residential%' OR occ_init LIKE '%Residential%' OR occ_prop LIKE '%Assisted%Living%' OR occ_init LIKE '%Assisted%Living%')
 	AND (occ_init IS DISTINCT FROM 'Garage/Miscellaneous' OR occ_prop IS DISTINCT FROM 'Garage/Miscellaneous')
 	AND job_number NOT IN (
