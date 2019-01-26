@@ -32,15 +32,15 @@ WHERE job_type = 'Alteration' AND (units_net::numeric >= 100 OR units_net::numer
 UNION
 SELECT 'number of inactive records' AS stat, COUNT(*) as count
 FROM housing_export a
-WHERE x_inactive = TRUE
+WHERE x_inactive = 'TRUE'
 UNION
 SELECT 'number of mixused records' AS stat, COUNT(*) as count
 FROM housing_export a
-WHERE x_mixeduse = TRUE
+WHERE x_mixeduse = 'TRUE'
 UNION
 SELECT 'number of outlier records' AS stat, COUNT(*) as count
 FROM housing_export a
-WHERE x_outlier = TRUE
+WHERE x_outlier = 'TRUE'
 );
 -- UNION
 -- SELECT 'number of hotel/residential records' AS stat, COUNT(*) as count
@@ -59,3 +59,14 @@ CREATE TABLE dev_qc_potentialdups AS (
 	SELECT * 
 	FROM housing_export_rownum 
 	WHERE row_number = 2); 
+
+DROP TABLE IF EXISTS dev_qc_occupancyresearch;
+CREATE TABLE dev_qc_occupancyresearch AS (
+	SELECT * FROM housing_export 
+	WHERE occ_init = 'Assembly: Other' 
+	OR occ_prop = 'Assembly: Other' 
+	OR job_number IN (
+		SELECT DISTINCT jobnumber 
+		FROM dob_jobapplications
+		WHERE occ_init = 'H-2' 
+		OR occ_prop = 'H-2'));
