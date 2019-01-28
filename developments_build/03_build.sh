@@ -67,3 +67,11 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geoaddress.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geombbl.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geomdcp.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/latlong.sql
+
+#### New Geocoding Commands ####
+# source $REPOLOC/developments_build/python/base/bin/activate
+# time python $REPOLOC/developments_build/python/geocode_address_new.py
+# psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/create_geo_tmp.sql
+# psql -U $DBUSER -d $DBNAME -c "\\COPY development_tmp FROM 'developments_build/db-development-geocoding.csv' CSV HEADER;"
+# psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/merge_geo_tmp.sql
+# rm developments_build/db-development-geocoding.csv
