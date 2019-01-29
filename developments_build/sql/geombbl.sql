@@ -2,8 +2,9 @@
 UPDATE developments a
 SET geom = ST_Centroid(b.geom),
 	x_geomsource = 'BBL geosupport'
-FROM dcp_mappluto b
-WHERE a.geo_bbl::text = b.bbl::text;
+FROM pluto b
+WHERE a.geo_bbl::text = b.bbl::text
+AND b.geom IS NOT NULL;
 
 UPDATE developments a
 SET geom = ST_Centroid(b.geom),

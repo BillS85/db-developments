@@ -32,15 +32,15 @@ WHERE job_type = 'Alteration' AND (units_net::numeric >= 100 OR units_net::numer
 UNION
 SELECT 'number of inactive records' AS stat, COUNT(*) as count
 FROM dev_export a
-WHERE x_inactive = 'TRUE'
+WHERE x_inactive = 'true'
 UNION
 SELECT 'number of mixused records' AS stat, COUNT(*) as count
 FROM dev_export a
-WHERE x_mixeduse = 'TRUE'
+WHERE x_mixeduse = 'true'
 UNION
 SELECT 'number of outlier records' AS stat, COUNT(*) as count
 FROM dev_export a
-WHERE x_outlier = 'TRUE'
+WHERE x_outlier = 'true'
 );
 -- UNION
 -- SELECT 'number of hotel/residential records' AS stat, COUNT(*) as count
