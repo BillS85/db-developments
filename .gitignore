@@ -1,5 +1,4 @@
 developments.config.json
 developments_build/python/base
-
-
-
+*.vscode
+*.DS_Store

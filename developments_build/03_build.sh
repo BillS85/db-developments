@@ -58,20 +58,17 @@ psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/x_outlier.sql
 
 
 echo 'Geocoding geoms...'
-source activate py2
-python $REPOLOC/developments_build/python/geocode_address.py
-source deactivate
+# Makde sure you have virtual environment named with base created
+
+source $REPOLOC/developments_build/python/base/bin/activate
+time python $REPOLOC/developments_build/python/geocode_address_new.py
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geo_create_tmp.sql
+psql -U $DBUSER -d $DBNAME -c "\\COPY development_tmp FROM 'developments_build/db-development-geocoding.csv' CSV HEADER;"
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geo_merge.sql
+rm developments_build/db-development-geocoding.csv
 
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geoaddress.sql
 
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geombbl.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/geomdcp.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/latlong.sql
-
-#### New Geocoding Commands ####
-# source $REPOLOC/developments_build/python/base/bin/activate
-# time python $REPOLOC/developments_build/python/geocode_address_new.py
-# psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/create_geo_tmp.sql
-# psql -U $DBUSER -d $DBNAME -c "\\COPY development_tmp FROM 'developments_build/db-development-geocoding.csv' CSV HEADER;"
-# psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/merge_geo_tmp.sql
-# rm developments_build/db-development-geocoding.csv
