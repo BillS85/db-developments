@@ -80,3 +80,17 @@ WHERE (job_type = 'Demolition'
 OR (job_type = 'Alteration'
 	AND (upper(job_description) LIKE '%GARAGE%' OR upper(address) LIKE '%REAR%') 
 	AND (units_net::numeric = 0 OR units_net::numeric IS NULL));
+-- Set occ_prop = 'Garage/Miscellaneous'
+-- Where job_type = New Building
+-- job_description contains '%GARAGE%' and does NOT contain any of the following: %Res%, %Dwell%, %house%,%home%, %apart%, %family%
+UPDATE developments
+SET occ_init = 'Garage/Miscellaneous',
+	occ_prop = 'Garage/Miscellaneous'
+WHERE (job_type = 'New Building' 
+	AND (upper(job_description) LIKE '%GARAGE%' 
+		AND upper(job_description) NOT LIKE '%RES%'
+		AND upper(job_description) NOT LIKE '%DWELL%'
+		AND upper(job_description) NOT LIKE '%HOUSE%'
+		AND upper(job_description) NOT LIKE '%HOME%'
+		AND upper(job_description) NOT LIKE '%APART%'
+		AND upper(job_description) NOT LIKE '%FAMILY%'));

@@ -45,6 +45,7 @@ CREATE TABLE developments (
 	geo_ntacode2010 text,
 	geo_censusblock2010 text,
 	geo_csd text,
+	geo_council text,
 	x_dcpedited text,
  	x_mixeduse text,
 	x_inactive text,
