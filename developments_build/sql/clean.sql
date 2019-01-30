@@ -15,3 +15,22 @@ WHERE a.units_prop ~ '[^0-9]';
 UPDATE developments a
 SET boro = INITCAP(boro) 
 WHERE boro IS NOT NULL;
+
+-- replace 0 with NULL, since 0 is likely incorrect in the following cases
+UPDATE developments
+SET stories_init = NULL
+WHERE stories_init = '0'
+AND (job_type = 'A1'
+OR job_type = 'DM');
+
+UPDATE developments
+SET zoningsft_init = NULL
+WHERE zoningsft_init = '0'
+AND (job_type = 'A1'
+OR job_type = 'DM');
+
+UPDATE developments
+SET zoningsft_prop = NULL
+WHERE zoningsft_prop = '0'
+AND (job_type = 'A1'
+OR job_type = 'NB');
