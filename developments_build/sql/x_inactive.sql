@@ -1,13 +1,14 @@
--- Tag projects that have been inactive for at least 5 years
+-- Tag projects that have been inactive for at least 2 years
 UPDATE developments
-	SET x_inactive =
-		(CASE
-			WHEN (CURRENT_DATE - status_date::date)/365 >= 5 THEN TRUE
-			ELSE FALSE
-		END)
-	WHERE
-		status <> 'Complete'
-		AND status <> 'Complete (demolition)';
+	SET x_inactive = TRUE
+	WHERE status = 'In progress (last plan disapproved)'
+	AND (CURRENT_DATE - status_date::date)/365 >= 2;
+
+-- Tag projects that have been inactive for at least 3 years
+UPDATE developments
+	SET x_inactive = TRUE
+	WHERE status = 'Filed'
+	AND (CURRENT_DATE - status_date::date)/365 >= 3;
 
 UPDATE developments
 	SET x_inactive = FALSE
