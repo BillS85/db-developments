@@ -61,8 +61,8 @@ WHERE job_type = 'Demolition' AND occ_prop IS NULL;
 -- set to Residential where exiting or proposed occupany is Residential
 UPDATE developments
 SET occ_category = 'Residential'
-WHERE occ_init LIKE '%Residential%' OR occ_prop LIKE '%Residential%'
-OR occ_init LIKE '%Assisted%Living%' OR occ_prop LIKE '%Assisted%Living%';
+WHERE upper(occ_init) LIKE '%RESIDENTIAL%' OR upper(occ_prop) LIKE '%RESIDENTIAL%'
+OR upper(occ_init) LIKE '%ASSISTED%LIVING%' OR upper(occ_prop) LIKE '%ASSISTED%LIVING%';
 
 -- otherwise set to other
 UPDATE developments
