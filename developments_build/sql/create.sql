@@ -4,7 +4,6 @@ CREATE TABLE developments (
 	job_number text,
 	job_type text,
 	job_description text,
-	bldg_type text,
 	occ_init text,
 	occ_prop text,
 	occ_category text,
