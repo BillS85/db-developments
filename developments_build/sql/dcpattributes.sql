@@ -60,6 +60,14 @@ WHERE b.units_prop ~ '[0-9]'
 	AND b.units_prop_res IS NULL;
 
 UPDATE developments a
+SET units_complete = TRIM(b.u_net_comp),
+	x_dcpedited = TRUE,
+	x_reason = b.reason
+FROM housing_input_dcpattributes b
+WHERE b.u_net_inc ~ '[0-9]'
+	AND a.job_number=b.job_number;
+
+UPDATE developments a
 SET units_incomplete = TRIM(b.u_net_inc),
 	x_dcpedited = TRUE,
 	x_reason = b.reason
