@@ -26,12 +26,12 @@ echo 'Outputting records for research'
 ## move to QA/QC scripts 
 ## psql -U $DBUSER -d $DBNAME -c "COPY (SELECT * FROM developments WHERE occ_init = 'A-3' OR occ_prop = 'A-3' OR occ_init = 'H-2' OR occ_prop = 'H-2') TO '$REPOLOC/developments_build/output/qc_occupancyresearch.csv' DELIMITER ',' CSV HEADER;"
 
-psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/occ_.sql
 
 echo 'Adding on DCP researched attributes'
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/dcpattributes.sql
 
 echo 'Calculating data attributes'
+psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/occ_.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/statusq.sql
 psql -U $DBUSER -d $DBNAME -f $REPOLOC/developments_build/sql/units_.sql
 
